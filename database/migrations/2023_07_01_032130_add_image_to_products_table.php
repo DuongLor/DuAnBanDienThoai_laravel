@@ -13,13 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('reviews', function (Blueprint $table) {
-            $table->id();
-						$table->unsignedBigInteger('user_id');
-						$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-						$table->text('comment');
-						$table->integer('rating');
-            $table->timestamps();
+        Schema::table('products', function (Blueprint $table) {
+            //
+						$table->string('image');
         });
     }
 
@@ -30,6 +26,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reviews');
+        Schema::table('products', function (Blueprint $table) {
+            //
+						$table->dropColumn('image');
+        });
     }
 };
