@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Specification extends Model
+class Slide extends Model
 {
 	use HasFactory;
-	public function product()
+	public function products()
 	{
-		return $this->belongsTo(Product::class);
+		return $this->hasMany(Product::class);
 	}
 }

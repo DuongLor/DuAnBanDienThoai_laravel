@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Promotion extends Model
 {
-    use HasFactory;
+	use HasFactory;
+	public function products()
+	{
+		return $this->hasMany(Product::class);
+	}
 }
