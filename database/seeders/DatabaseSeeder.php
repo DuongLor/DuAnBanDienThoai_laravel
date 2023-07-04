@@ -26,21 +26,22 @@ class DatabaseSeeder extends Seeder
 		// \App\Models\User::factory(10)->create();
 		$this->call([
 			// chaỵ đầu
-			// CategorySeeder::class,
-			// BrandSeeder::class,
-			// ColorSeeder::class,
-			// SlideSeeder::class,
-			// UserSeeder::class,
-			// ProductSeeder::class,
-			// PaymentMethodSeeder::class,
+			CategorySeeder::class,
+			BrandSeeder::class,
+			
+			UserSeeder::class,
+			ProductSeeder::class,
+			PaymentMethodSeeder::class,
 
-			//chạy sau
-			// PromotionSeeder::class,
-			// ReviewSeeder::class,
-			// SpecificationSeeder::class,
-			// ImageSeeder::class,
-			// OrderSeeder::class,
-			// AddressSeeder::class,
+			// chạy sau
+			PromotionSeeder::class,
+			ReviewSeeder::class,
+			SpecificationSeeder::class,
+			ImageSeeder::class,
+			OrderSeeder::class,
+			ColorSeeder::class,
+			SlideSeeder::class,
+			AddressSeeder::class,
 
 			//tự faker 3 bảng chung là product_order , product_color , slide_product
 		]);

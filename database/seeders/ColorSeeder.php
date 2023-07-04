@@ -3,8 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\Color;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Product;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class ColorSeeder extends Seeder
 {
@@ -16,6 +17,16 @@ class ColorSeeder extends Seeder
     public function run()
     {
         //
-				Color::factory()->count(5)->create();
+        $colors = Color::factory()->count(10)->create();
+
+        foreach ($colors as $color) {
+            // Lấy ngẫu nhiên 3 sản phẩm
+            $products = Product::inRandomOrder()->limit(3)->get();
+$price = random_int(100, 1000);
+$quantity = random_int(1, 10);
+            // Gán màu sắc cho các sản phẩm
+            $color->products()->attach($products,['price' => $price, 'quantity' => $quantity]);
+        }
+                
     }
 }
