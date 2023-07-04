@@ -15,10 +15,12 @@ return new class extends Migration
     {
         Schema::create('product_color', function (Blueprint $table) {
             $table->id();
-						$table->unsignedBigInteger('product_id');
-						$table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-						$table->unsignedBigInteger('color_id');
-						$table->foreign('color_id')->references('id')->on('colors')->onDelete('cascade');
+            $table->unsignedBigInteger('product_id');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->unsignedBigInteger('color_id');
+            $table->foreign('color_id')->references('id')->on('colors')->onDelete('cascade');
+            $table->decimal('price', 10, 0);
+            $table->integer('quantity');
             $table->timestamps();
         });
     }
