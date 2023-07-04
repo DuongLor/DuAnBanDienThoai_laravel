@@ -10,6 +10,6 @@ class Slide extends Model
 	use HasFactory;
 	public function products()
 	{
-		return $this->hasMany(Product::class);
+		return $this->belongsToMany(Product::class, 'slide_product', 'slide_id', 'product_id');
 	}
 }
