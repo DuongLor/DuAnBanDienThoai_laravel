@@ -19,12 +19,8 @@ return new class extends Migration
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->unsignedBigInteger('brand_id');
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
-            $table->unsignedBigInteger('slide_id');
-            $table->foreign('slide_id')->references('id')->on('slides')->onDelete('cascade');
             $table->string('name');
             $table->text('description');
-            $table->integer('quantity');
-            $table->integer('price');
             $table->timestamps();
         });
     }
