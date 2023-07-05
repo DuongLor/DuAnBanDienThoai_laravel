@@ -10,7 +10,7 @@ class Order extends Model
 	use HasFactory;
 	public function products()
 	{
-		return $this->belongsToMany(Product::class, 'order_product')->withPivot('quantity');
+		return $this->belongsToMany(Product::class, 'product_order', 'order_id', 'product_id');
 	}
 	public function user()
 	{

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->integer('quantity');
             $table->decimal('unit_price', 10, 0);
-            $table->decimal('discount_price', 10, 0);
+            $table->decimal('discount_price', 10, 0)->nullable();
             $table->timestamps();
         });
     }
