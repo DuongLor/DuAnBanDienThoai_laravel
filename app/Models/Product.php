@@ -30,7 +30,7 @@ class Product extends Model
 	}
 	public function colors()
 	{
-		return $this->belongsToMany(Color::class, 'color_product');
+		return $this->belongsToMany(Color::class, 'product_color')->withPivot('price','quantity');
 	}
 	public function slide()
 	{
