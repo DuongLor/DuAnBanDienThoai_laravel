@@ -20,6 +20,7 @@ class ProductFactory extends Factory
 			'category_id' => $this->faker->numberBetween(1, 5),
 			'brand_id' => $this->faker->numberBetween(1, 5),
 			'name' => $this->faker->name,
+			'thumbnail' => $this->faker->imageUrl(640, 480),
 			'description' => $this->faker->text,
 			//
 		];

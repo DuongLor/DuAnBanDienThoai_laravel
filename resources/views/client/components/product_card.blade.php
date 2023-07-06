@@ -1,10 +1,10 @@
-<div class="card h-100">
+<div class="card h-100 shadow " style="width: {{$width??''}}">
 	<!-- Sale badge-->
 	{{-- <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale
 	</div> --}}
 	<!-- Product image-->
 	<img class="card-img-top"
-			src="@foreach ($product->images as $item) {{ $item->image }} @endforeach" alt="..." />
+			src="{{ $product->thumbnail }}" alt="..." />
 	<!-- Product details-->
 	<div class="card-body p-4">
 			<div class="text-center">
@@ -30,7 +30,6 @@
 							@else
 							@endif
 					</div>
-					<!-- Product brand-->
 					<!-- Product price-->
 					@php
 							$minPrice = $product->colors->min(function ($color) {
