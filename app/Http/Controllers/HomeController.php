@@ -15,9 +15,11 @@ class HomeController extends Controller
 		public function index(){
 			$slides = Slide::all();
 			$products = Product::all();
+			$chunkedProducts = $products->chunk(ceil($products->count() / 2));
+
 			$brands = Brand::all();
 			$categories = Category::all();
 			$top_5_new_product = product::orderBy('created_at', 'desc')->take(5)->get();
-			return view('client.home',compact('slides','products','brands','categories','top_5_new_product'));
+			return view('client.home',compact('slides','chunkedProducts','brands','categories','top_5_new_product'));
 		}
 }
