@@ -22,6 +22,7 @@ return new class extends Migration
             $table->rememberToken();
 						$table->string('token')->nullable();
             $table->string('avatar')->nullable();
+						$table->string('role')->default('1');
             $table->timestamps();
         });
     }

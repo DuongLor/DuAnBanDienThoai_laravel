@@ -9,10 +9,18 @@
               <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                   <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ route('home') }}">Trang
                           chủ</a></li>
-                  <li class="nav-item"><a class="nav-link active" aria-current="page"
-                          href="{{ route('register') }}">Đăng ký</a></li>
-                  <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ route('login') }}">Đăng
-                          nhập</a></li>
+                  @if (Auth::check())
+                      <li class="nav-item"><a class="nav-link active" aria-current="page"
+                              href="{{ route('profile') }}">Trang cá nhân</a></li>
+                      <li class="nav-item"><a class="nav-link active" aria-current="page"
+                              href="{{ route('logout') }}">Đăng xuất</a></li>
+                  @else
+                      <li class="nav-item"><a class="nav-link active" aria-current="page"
+                              href="{{ route('login') }}">Đăng
+                              nhập</a></li>
+                      <li class="nav-item"><a class="nav-link active" aria-current="page"
+                              href="{{ route('register') }}">Đăng ký</a></li>
+                  @endif
               </ul>
               <form class="d-flex">
                   <button class="btn btn-outline-dark" type="submit">

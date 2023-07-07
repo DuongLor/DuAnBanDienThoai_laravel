@@ -16,11 +16,21 @@ use App\Http\Controllers\RegisterController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// Trang home
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/detail/{id}', [ProductController::class, 'detail'])->name('detail');
-Route::get('brand/{id}', [ProductController::class, 'brand'])->name('brand.show');
+Route::get('/brand/{id}', [ProductController::class, 'brand'])->name('brand.show');
+
+// Login
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'store'])->name('login.store');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
+// Register
 Route::get('register', [RegisterController::class, 'index'])->name('register');
 Route::post('register', [RegisterController::class, 'store'])->name('register.store');
-Route::get('login', [LoginController::class, 'index'])->name('login');
 Route::get('/register/verify/{token}', [RegisterController::class, 'verify'])->name('confirm_email');
+
+Route::group(['middleware' => 'auth'], function(){
+	Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+});
