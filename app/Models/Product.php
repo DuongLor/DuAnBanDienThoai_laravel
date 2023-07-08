@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Color;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
@@ -12,14 +13,9 @@ class Product extends Model
 		'category_id',
 		'brand_id',
 		'name',
-		'price',
-		'description',
-		'image',
 		'thumbnail',
-		'status',
-		'view',
-		'created_at',
-		'updated_at',
+		'description',
+		'is_active',
 	];
 	public function category()
 	{
@@ -31,7 +27,7 @@ class Product extends Model
 	}
 	public function colors()
 	{
-		return $this->belongsToMany(Color::class, 'product_color')->withPivot('price','quantity');
+		return $this->belongsToMany(Color::class, 'product_color')->withPivot('price','quantity','discount');
 	}
 	public function slide()
 	{
