@@ -7,7 +7,8 @@ use App\Http\Controllers\AddressController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
-use App\Models\Address;
+use App\Http\Controllers\ReviewController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,7 @@ use App\Models\Address;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/detail/{id}', [ProductController::class, 'detail'])->name('detail');
 Route::get('/brand/{id}', [ProductController::class, 'brand'])->name('brand.show');
-
+Route::post('/review/store',[ReviewController::class, 'store'])->name('review.store');
 // Login
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store'])->name('login.store');
