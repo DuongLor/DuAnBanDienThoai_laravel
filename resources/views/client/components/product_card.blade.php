@@ -41,6 +41,6 @@
 	</div>
 	<!-- Product actions-->
 	<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-			<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Thêm vào giỏ hàng</a></div>
+			<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{route('detail', $product->id)}}">Xem chi tiết</a></div>
 	</div>
 </div>
