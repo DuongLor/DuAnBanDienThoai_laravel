@@ -22,6 +22,7 @@ class ProductFactory extends Factory
 			'name' => $this->faker->name,
 			'thumbnail' => $this->faker->imageUrl(640, 480),
 			'description' => $this->faker->text,
+			'is_active' => $this->faker->boolean(50),
 			//
 		];
 	}

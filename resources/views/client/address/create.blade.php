@@ -3,7 +3,8 @@
 @section('content')
 <div class="container px-4 px-lg-5 py-5">
 	<h1>Thêm thông tin liên hệ</h1>
-<form>
+<form action="{{route('address.store')}}" method="POST">
+	@csrf
 	<div class="mb-3">
     <label for="" class="form-label">Tên</label>
     <input type="text" class="form-control" id="" aria-describedby="" name="name">
