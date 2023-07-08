@@ -7,15 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Address extends Model
 {
-	use HasFactory;
-	protected $fillable = [
-		'name',
-		'address',
-		'phone',
-		'user_id',
-	];
-	public function user()
-	{
-		return $this->belongsTo(User::class);
-	}
+    use HasFactory;
+    protected $table = 'addresses';
+    protected $fillable = [
+        'user_id','name','phone','address'
+    ];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
