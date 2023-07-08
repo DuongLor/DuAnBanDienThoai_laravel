@@ -20,6 +20,9 @@ return new class extends Migration
             $table->unsignedBigInteger('color_id');
             $table->foreign('color_id')->references('id')->on('colors')->onDelete('cascade');
             $table->decimal('price', 10, 0);
+            $table->decimal('discount', 10, 0)->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('expiry_date')->nullable();
             $table->integer('quantity');
             $table->timestamps();
         });
