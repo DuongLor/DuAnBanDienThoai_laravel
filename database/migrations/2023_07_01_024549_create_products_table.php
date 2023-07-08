@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('thumbnail');
             $table->text('description');
+            $table->boolean('is_active');
             $table->timestamps();
         });
     }
