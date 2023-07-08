@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 
 /*
@@ -32,5 +34,15 @@ Route::post('register', [RegisterController::class, 'store'])->name('register.st
 Route::get('/register/verify/{token}', [RegisterController::class, 'verify'])->name('confirm_email');
 
 Route::group(['middleware' => 'auth'], function(){
+	// Profile
 	Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+	Route::put('profile/{profileId}', [ProfileController::class, 'update'])->name('profile.update');
+
+	// Addresses user
+	Route::get('address', [AddressController::class, 'index'])->name('address');
+	Route::get('addess/create', [AddressController::class, 'create'])->name('address.create');
+	Route::post('address/store', [AddressController::class, 'store'])->name('address.store');
+	Route::get('address/edit/{addressId}', [AddressController::class, 'edit'])->name('address.edit');
+	Route::put('address/update/{addressId}', [AddressController::class, 'update'])->name('address.update');
+	Route::delete('address/delete/{addressId}', [AddressController::class, 'destroy'])->name('address.destroy');
 });
