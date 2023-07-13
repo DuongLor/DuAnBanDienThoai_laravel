@@ -27,7 +27,7 @@ class Product extends Model
 	}
 	public function colors()
 	{
-		return $this->belongsToMany(Color::class, 'product_color')->withPivot('price','quantity','discount');
+		return $this->belongsToMany(Color::class, 'product_color')->withPivot('price', 'quantity', 'discount');
 	}
 	public function slide()
 	{
@@ -48,5 +48,9 @@ class Product extends Model
 	public function images()
 	{
 		return $this->hasMany(Image::class);
+	}
+	public function carts()
+	{
+		return $this->belongsToMany(Cart::class, 'product_cart', 'product_id', 'cart_id')->withPivot('unit_price', 'quantity', 'discount', 'total_price');
 	}
 }

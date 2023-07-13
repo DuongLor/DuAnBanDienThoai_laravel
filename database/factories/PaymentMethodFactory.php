@@ -9,16 +9,20 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class PaymentMethodFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition()
-    {
-        return [
-            //
-						'name' => $this->faker->name,
-        ];
-    }
+	/**
+	 * Define the model's default state.
+	 *
+	 * @return array<string, mixed>
+	 */
+	public function definition()
+	{
+		return [
+			//
+			'type' => $this->faker->name,
+			'name' => $this->faker->name,
+			'credit_card' => $this->faker->randomNumber(10),
+			'expiration_date' => $this->faker->date(),
+			'cvv' => $this->faker->randomNumber(2),
+		];
+	}
 }
