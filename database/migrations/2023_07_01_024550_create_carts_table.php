@@ -13,13 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('payment_methods', function (Blueprint $table) {
+        Schema::create('carts', function (Blueprint $table) {
             $table->id();
-						$table->string('type');
-            $table->string('name');
-						$table->integer('credit_card');
-						$table->date('expiration_date');
-						$table->integer('cvv');
+						$table->unsignedBigInteger('user_id');
+						$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payment_methods');
+        Schema::dropIfExists('carts');
     }
 };

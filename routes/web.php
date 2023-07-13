@@ -1,13 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OderController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\ReviewController;
 
 
 /*
@@ -40,13 +42,19 @@ Route::group(['middleware' => 'auth'], function () {
 	// Profile
 	Route::get('profile', [ProfileController::class, 'index'])->name('profile');
 	Route::put('profile/{profileId}', [ProfileController::class, 'update'])->name('profile.update');
-
 	// Addresses user
 	Route::get('address', [AddressController::class, 'index'])->name('address');
 	Route::get('addess/create', [AddressController::class, 'create'])->name('address.create');
 	Route::post('address', [AddressController::class, 'store'])->name('address.store');
 	Route::get('address/edit/{addressId}', [AddressController::class, 'edit'])->name('address.edit');
 	Route::put('address/update/{addressId}', [AddressController::class, 'update'])->name('address.update');
-	// Định nghĩa route xóa với phương thức DELETE và GET
 	Route::match(['delete', 'get'], '/delete/{id}', [AddressController::class, 'destroy'])->name('address.destroy');
+	// Cart
+	Route::get('cart', [CartController::class, 'index'])->name('cart');
+	Route::post('cart', [CartController::class, 'store'])->name('cart.store');
+	Route::put('cart/{cartId}', [CartController::class, 'update'])->name('cart.update');
+	Route::get('cart/delete/{cartId}', [CartController::class, 'destroy'])->name('cart.delete');
+	// Oder
+	Route::get('oder', [OderController::class, 'index'])->name('oder.index');
+
 });
