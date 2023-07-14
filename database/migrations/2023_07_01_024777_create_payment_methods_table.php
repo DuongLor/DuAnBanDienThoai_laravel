@@ -6,31 +6,27 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('payment_methods', function (Blueprint $table) {
-            $table->id();
-						$table->string('type');
-            $table->string('name');
-						$table->integer('credit_card');
-						$table->date('expiration_date');
-						$table->integer('cvv');
-            $table->timestamps();
-        });
-    }
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
+	{
+		Schema::create('payment_methods', function (Blueprint $table) {
+			$table->id();
+			$table->string('type');
+			$table->timestamps();
+		});
+	}
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('payment_methods');
-    }
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+		Schema::dropIfExists('payment_methods');
+	}
 };

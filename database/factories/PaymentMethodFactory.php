@@ -19,10 +19,6 @@ class PaymentMethodFactory extends Factory
 		return [
 			//
 			'type' => $this->faker->name,
-			'name' => $this->faker->name,
-			'credit_card' => $this->faker->randomNumber(10),
-			'expiration_date' => $this->faker->date(),
-			'cvv' => $this->faker->randomNumber(2),
 		];
 	}
 }

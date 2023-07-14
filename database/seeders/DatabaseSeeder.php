@@ -7,7 +7,6 @@ use App\Models\Image;
 use App\Models\Order;
 use App\Models\ProductColor;
 use App\Models\ProductOder;
-use App\Models\Promotion;
 use App\Models\SlideProduct;
 use App\Models\Specification;
 use App\Models\User;
@@ -34,7 +33,6 @@ class DatabaseSeeder extends Seeder
 			PaymentMethodSeeder::class,
 
 			// chạy sau
-			PromotionSeeder::class,
 			ReviewSeeder::class,
 			SpecificationSeeder::class,
 			ImageSeeder::class,

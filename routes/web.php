@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BillController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OderController;
@@ -27,7 +28,7 @@ use App\Http\Controllers\RegisterController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/detail/{id}', [ProductController::class, 'detail'])->name('detail');
 Route::get('/brand/{id}', [ProductController::class, 'brand'])->name('brand.show');
-Route::post('/review/store',[ReviewController::class, 'store'])->name('review.store');
+Route::post('/review/store', [ReviewController::class, 'store'])->name('review.store');
 // Login
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store'])->name('login.store');
@@ -56,5 +57,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('cart/delete/{cartId}', [CartController::class, 'destroy'])->name('cart.delete');
 	// Oder
 	Route::get('oder', [OderController::class, 'index'])->name('oder.index');
-
+	Route::post('oder', [OderController::class, 'store'])->name('oder.store');
+	// Bill
+	Route::get('bill', [BillController::class, 'index'])->name('bill');
+	Route::get('bill/list', [BillController::class, 'list'])->name('bill.list');
 });

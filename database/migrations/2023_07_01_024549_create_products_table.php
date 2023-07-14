@@ -6,34 +6,34 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('products', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->unsignedBigInteger('brand_id');
-            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
-            $table->string('name');
-            $table->string('thumbnail');
-            $table->text('description');
-            $table->boolean('is_active');
-            $table->timestamps();
-        });
-    }
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
+	{
+		Schema::create('products', function (Blueprint $table) {
+			$table->id();
+			$table->unsignedBigInteger('category_id');
+			$table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+			$table->unsignedBigInteger('brand_id');
+			$table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
+			$table->string('name');
+			$table->string('thumbnail');
+			$table->text('description');
+			$table->boolean('is_active');
+			$table->timestamps();
+		});
+	}
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('products');
-    }
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+		Schema::dropIfExists('products');
+	}
 };

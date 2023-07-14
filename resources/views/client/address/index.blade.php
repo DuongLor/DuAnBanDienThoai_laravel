@@ -18,11 +18,13 @@
                 <div class="col-md-6 py-3">
                     <div class="card">
                         <div class="card-body">
-                          <h4 class="card-title">Tên: {{ $item->name }}</h4>
+                            <h4 class="card-title">Tên: {{ $item->name }}</h4>
                             <p class="card-text">Địa chỉ: {{ $item->address }}</p>
                             <p class="card-text">Số điện thoại: {{ $item->phone }}</p>
-                            <a href="{{ route('address.edit', $item->id) }}" class="card-link">Sửa</a>
-                            <a href="{{ route('address.destroy', $item->id) }}" class="card-link"><i class="fas fa-trash fa-lg"></i></a>
+                            <a href="{{ route('address.edit', $item->id) }}" class="card-link"><i
+                                    class="fa-solid fa-pen-to-square"></i></a>
+                            <a href="{{ route('address.destroy', $item->id) }}" class="card-link"><i
+                                    class="fas fa-trash fa-lg"></i></a>
                         </div>
                     </div>
                 </div>

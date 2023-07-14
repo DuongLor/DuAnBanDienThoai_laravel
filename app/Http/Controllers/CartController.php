@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\Color;
 use App\Models\Product;
 use App\Models\ProductCart;
+use App\Models\ProductColor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,6 +21,11 @@ class CartController extends Controller
 	{
 		//
 		$cart = Cart::where('user_id', Auth::user()->id)->first();
+		if (!$cart) {
+			$cart = new Cart();
+			$cart->user_id = Auth::user()->id;
+			$cart->save();
+		}
 		$product_cart = ProductCart::where('cart_id', $cart->id)->get();
 		return view('client.cart.index', compact('product_cart'));
 	}
