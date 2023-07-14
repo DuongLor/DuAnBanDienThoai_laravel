@@ -11,22 +11,29 @@
                         <table class="table table-light">
                             <thead>
                                 <tr>
-                                    <th scope="col">Column 1</th>
-                                    <th scope="col">Column 2</th>
-                                    <th scope="col">Column 3</th>
+                                    <th scope="col">STT</th>
+                                    <th scope="col">Thông tin liên lạc</th>
+                                    <th scope="col">Phương thức thanh toán</th>
+                                    <th scope="col">Ngày đặt</th>
+                                    <th scope="col">Tổng tiền</th>
+                                    <th scope="col">Trạng thái</th>
+                                    <th scope="col">Hành động</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="">
-                                    <td scope="row">R1C1</td>
-                                    <td>R1C2</td>
-                                    <td>R1C3</td>
-                                </tr>
-                                <tr class="">
-                                    <td scope="row">Item</td>
-                                    <td>Item</td>
-                                    <td>Item</td>
-                                </tr>
+                                @foreach ($orders as $key => $order)
+                                    <tr>
+                                        <th scope="row">{{ $key + 1 }}</th>
+                                        <td>{{ $order->contact_information }}</td>
+                                        <td>{{ $order->paymentMethod->type }}</td>
+                                        <td>{{ $order->order_date }}</td>
+                                        <td>{{ $order->total_amount }}</td>
+                                        <td>{{ $order->status }}</td>
+                                        <td>
+                                            <a href="{{ route('bill.show', $order->id) }}">Xem</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
