@@ -6,26 +6,38 @@
         <div class="container px-4 px-lg-5 my-5">
             <div class="row gx-4 gx-lg-5 align-items-center">
                 <div class="col-md-6">
-                    <div id="carouselExampleIndicators" class="carousel slide mb-4" data-bs-ride="true">
-                        <div class="carousel-inner">
-                            @foreach ($product_images as $key => $item)
-                                <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                                    <img src="{{ $item->image }}" class="d-block w-100 object-fit-cover"
-                                        style="max-height: 600px" alt="...">
-                                </div>
-                            @endforeach
+                    @if ($product->images->count())
+                        <div id="carouselExampleIndicators" class="carousel slide mb-4" data-bs-ride="true">
+                            <div class="carousel-inner">
+                                @foreach ($product_images as $key => $item)
+                                    <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                                        <img src="{{ $item->image }}" class="d-block w-100 object-fit-cover"
+                                            style="max-height: 600px" alt="...">
+                                    </div>
+                                @endforeach
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                            data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                            data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
+                    @else
+                        {{-- Các câu lệnh khác --}}
+                        <div class="carousel-inner">
+                            <div class="carousel mb-4 ">
+                                <img src="{{ $product->thumbnail }}" class="d-block w-100 object-fit-cover"
+                                    style="max-height: 600px" alt="...">
+                            </div>
+                        </div>
+
+                    @endif
+
                 </div>
                 <div class="col-md-6">
                     <form action="{{ route('cart.store') }}" method="POST">

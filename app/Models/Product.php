@@ -37,10 +37,6 @@ class Product extends Model
 	{
 		return $this->hasMany(Specification::class);
 	}
-	public function promotion()
-	{
-		return $this->belongsTo(Promotion::class);
-	}
 	public function reviews()
 	{
 		return $this->hasMany(Review::class);

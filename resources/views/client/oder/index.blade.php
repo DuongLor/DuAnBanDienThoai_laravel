@@ -9,229 +9,132 @@
             -moz-user-select: none;
             user-select: none;
         }
+
         @media (min-width: 768px) {
             .bd-placeholder-img-lg {
                 font-size: 3.5rem;
+            }
+
+            .custom-border {
+                border: 2px solid transparent;
+                transition: border-color 0.2s;
+            }
+
+            .custom-border.active {
+                border-color: #0d6efd;
+                border-radius: 5px;
+
             }
         }
     </style>
 @endsection
 @section('content')
+    @php
+        $oder_total_price = 0;
+    @endphp
     <div class="container py-5">
         <main>
-            <div class="row g-5">
-                <div class="col-md-5 col-lg-4 order-md-last">
-                    <h4 class="d-flex justify-content-between align-items-center mb-3">
-                        <span class="text-primary">Your cart</span>
-                        <span class="badge bg-primary rounded-pill">3</span>
-                    </h4>
-                    <ul class="list-group mb-3">
-                        <li class="list-group-item d-flex justify-content-between lh-sm">
-                            <div>
-                                <h6 class="my-0">Product name</h6>
-                                <small class="text-muted">Brief description</small>
-                            </div>
-                            <span class="text-muted">$12</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between lh-sm">
-                            <div>
-                                <h6 class="my-0">Second product</h6>
-                                <small class="text-muted">Brief description</small>
-                            </div>
-                            <span class="text-muted">$8</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between lh-sm">
-                            <div>
-                                <h6 class="my-0">Third item</h6>
-                                <small class="text-muted">Brief description</small>
-                            </div>
-                            <span class="text-muted">$5</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between bg-light">
+            <form action="{{ route('oder.store') }}" method="POST">
+                @csrf
+                <input type="hidden" value="" id="contact_information" name="contact_information">
+                <div class="row g-5 ">
+                    <div class="col-md-5 col-lg-4 order-md-last">
+                        <h4 class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="text-primary">Giỏ hàng</span>
+                            <span class="badge bg-primary rounded-pill">{{ $product_cart->count() }}</span>
+                        </h4>
+
+                        <ul class="list-group mb-3">
+                            @foreach ($product_cart as $item)
+                                <li class="list-group-item d-flex justify-content-between lh-sm ">
+                                    <div class="">
+                                        @php
+                                            $oder_total_price += $item->total_price;
+                                        @endphp
+                                        <h6 class="my-0">{{ $item->product->name }}</h6>
+                                        <small class="text-muted">Color:
+                                            @foreach ($item->product->colors as $color)
+                                                @if ($color->id == $item->color_id)
+                                                    {{ $color->name }}
+                                                @endif
+                                            @endforeach
+                                        </small>
+                                        <br>
+                                        <small class="text-muted">Số lượng: {{ $item->quantity }}</small>
+                                    </div>
+                                    <span class="text-muted">{{ $item->total_price }}</span>
+                                </li>
+                            @endforeach
+                            {{-- <li class="list-group-item d-flex justify-content-between bg-light">
                             <div class="text-success">
                                 <h6 class="my-0">Promo code</h6>
                                 <small>EXAMPLECODE</small>
                             </div>
                             <span class="text-success">−$5</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between">
-                            <span>Total (USD)</span>
-                            <strong>$20</strong>
-                        </li>
-                    </ul>
-
-                    <form class="card p-2">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Promo code">
-                            <button type="submit" class="btn btn-secondary">Redeem</button>
+                        </li> --}}
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Total (USD)</span>
+                                <strong class="total_price_oder">{{ $oder_total_price }}</strong>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-7 col-lg-8">
+                        <h4 class="mb-3">Địa chỉ đơn hàng</h4>
+                        <div class="row gx-4 gx-lg-5 align-items-center">
+                            <span>Thêm địa chỉ: </span>
+                            <a href="{{ route('address') }}">
+                                <i class="fa-sharp fa-solid fa-address-card"style="font-size: 50px"></i></a>
                         </div>
-                    </form>
-                </div>
-                <div class="col-md-7 col-lg-8">
-                    <h4 class="mb-3">Billing address</h4>
-                    <form class="needs-validation" novalidate>
-                        <div class="row g-3">
-                            <div class="col-sm-6">
-                                <label for="firstName" class="form-label">First name</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="" value=""
-                                    required>
-                                <div class="invalid-feedback">
-                                    Valid first name is required.
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6">
-                                <label for="lastName" class="form-label">Last name</label>
-                                <input type="text" class="form-control" id="lastName" placeholder="" value=""
-                                    required>
-                                <div class="invalid-feedback">
-                                    Valid last name is required.
-                                </div>
-                            </div>
-
-                            <div class="col-12">
-                                <label for="username" class="form-label">Username</label>
-                                <div class="input-group has-validation">
-                                    <span class="input-group-text">@</span>
-                                    <input type="text" class="form-control" id="username" placeholder="Username"
-                                        required>
-                                    <div class="invalid-feedback">
-                                        Your username is required.
+                        <div class="row gx-4 gx-lg-5 align-items-center">
+                            @foreach ($user_address->addresses as $item)
+                                <div class="py-3">
+                                    <div class="card">
+                                        <div class="card-body custom-border" onclick="toggleActive(this)">
+                                            <h4 class="card-title">Tên: {{ $item->name }}</h4>
+                                            <span class="card-text ">Địa chỉ: {{ $item->address }}</span>
+                                            <p class="card-text pt-2">Số điện thoại: {{ $item->phone }}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="col-12">
-                                <label for="email" class="form-label">Email <span
-                                        class="text-muted">(Optional)</span></label>
-                                <input type="email" class="form-control" id="email" placeholder="you@example.com">
-                                <div class="invalid-feedback">
-                                    Please enter a valid email address for shipping updates.
-                                </div>
-                            </div>
-
-                            <div class="col-12">
-                                <label for="address" class="form-label">Address</label>
-                                <input type="text" class="form-control" id="address" placeholder="1234 Main St"
-                                    required>
-                                <div class="invalid-feedback">
-                                    Please enter your shipping address.
-                                </div>
-                            </div>
-
-                            <div class="col-12">
-                                <label for="address2" class="form-label">Address 2 <span
-                                        class="text-muted">(Optional)</span></label>
-                                <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
-                            </div>
-
-                            <div class="col-md-5">
-                                <label for="country" class="form-label">Country</label>
-                                <select class="form-select" id="country" required>
-                                    <option value="">Choose...</option>
-                                    <option>United States</option>
-                                </select>
-                                <div class="invalid-feedback">
-                                    Please select a valid country.
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <label for="state" class="form-label">State</label>
-                                <select class="form-select" id="state" required>
-                                    <option value="">Choose...</option>
-                                    <option>California</option>
-                                </select>
-                                <div class="invalid-feedback">
-                                    Please provide a valid state.
-                                </div>
-                            </div>
-
-                            <div class="col-md-3">
-                                <label for="zip" class="form-label">Zip</label>
-                                <input type="text" class="form-control" id="zip" placeholder="" required>
-                                <div class="invalid-feedback">
-                                    Zip code required.
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
-
                         <hr class="my-4">
-
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="same-address">
-                            <label class="form-check-label" for="same-address">Shipping address is the same as my billing
-                                address</label>
-                        </div>
-
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="save-info">
-                            <label class="form-check-label" for="save-info">Save this information for next time</label>
-                        </div>
-
-                        <hr class="my-4">
-
-                        <h4 class="mb-3">Payment</h4>
-
+                        <h4 class="mb-3">Phương thức thanh toán</h4>
                         <div class="my-3">
-                            <div class="form-check">
-                                <input id="credit" name="paymentMethod" type="radio" class="form-check-input"
-                                    checked required>
-                                <label class="form-check-label" for="credit">Credit card</label>
-                            </div>
-                            <div class="form-check">
-                                <input id="debit" name="paymentMethod" type="radio" class="form-check-input"
-                                    required>
-                                <label class="form-check-label" for="debit">Debit card</label>
-                            </div>
-                            <div class="form-check">
-                                <input id="paypal" name="paymentMethod" type="radio" class="form-check-input"
-                                    required>
-                                <label class="form-check-label" for="paypal">PayPal</label>
-                            </div>
+                            @foreach ($payment_method as $item)
+                                <div class="form-check">
+                                    <input id="credit" name="paymentMethod" type="radio" class="form-check-input"
+                                        value="{{ $item->id }}" checked required>
+                                    <label class="form-check-label" for="credit">{{ $item->type }}</label>
+                                </div>
+                            @endforeach
                         </div>
-
-                        <div class="row gy-3">
-                            <div class="col-md-6">
-                                <label for="cc-name" class="form-label">Name on card</label>
-                                <input type="text" class="form-control" id="cc-name" placeholder="" required>
-                                <small class="text-muted">Full name as displayed on card</small>
-                                <div class="invalid-feedback">
-                                    Name on card is required
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label for="cc-number" class="form-label">Credit card number</label>
-                                <input type="text" class="form-control" id="cc-number" placeholder="" required>
-                                <div class="invalid-feedback">
-                                    Credit card number is required
-                                </div>
-                            </div>
-
-                            <div class="col-md-3">
-                                <label for="cc-expiration" class="form-label">Expiration</label>
-                                <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
-                                <div class="invalid-feedback">
-                                    Expiration date required
-                                </div>
-                            </div>
-
-                            <div class="col-md-3">
-                                <label for="cc-cvv" class="form-label">CVV</label>
-                                <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-                                <div class="invalid-feedback">
-                                    Security code required
-                                </div>
-                            </div>
-                        </div>
-
+                        <input type="hidden" value="{{ $oder_total_price }}" id="total_amount" name="total_amount">
                         <hr class="my-4">
-
-                        <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
-                    </form>
+                        <button class="w-100 btn btn-primary btn-lg" type="submit">Thanh toán</button>
+                    </div>
                 </div>
-            </div>
+            </form>
         </main>
     </div>
+@endsection
+@section('js_footer_custom')
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        let activeElement = null;
+        // Hàm để thêm/xóa lớp 'active' khi nhấp vào div
+        function toggleActive(element) {
+            if (activeElement !== null) {
+                activeElement.classList.remove('active');
+            }
+            element.classList.add('active');
+            activeElement = element;
+            var activeDiv = document.querySelector('.custom-border.active');
+            var name = activeDiv.querySelector('h4').innerText;
+            var address = activeDiv.querySelector('span').innerText;
+            var phone = activeDiv.querySelector('p').innerText;
+            var contact_information = document.getElementById('contact_information');
+            contact_information.value = name + ', ' + address + ', ' + phone;
+        }
+    </script>
 @endsection

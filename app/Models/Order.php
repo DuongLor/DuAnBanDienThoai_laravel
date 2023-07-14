@@ -24,4 +24,8 @@ class Order extends Model
 	{
 		return $this->belongsTo(PaymentMethod::class);
 	}
+
+	public function productOder(){
+		return $this->hasMany(ProductOrder::class);
+	}
 }
