@@ -17,6 +17,13 @@ class BillController extends Controller
 			return view('client.bill.thankyou', compact('product_orders', 'oder'));
 		}
 		public function list(){
-			return view('client.bill.list');
+			// get all orders by user
+			$orders = Order::where('user_id', Auth::user()->id)->latest()->get();
+			return view('client.bill.list', compact('orders'));
+		}
+		public function show($id){
+			$order = Order::find($id);
+			$product_orders = ProductOrder::where('order_id', $id)->get();
+			return view('client.bill.show', compact('product_orders', 'order'));
 		}
 }

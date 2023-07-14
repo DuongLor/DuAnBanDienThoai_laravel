@@ -61,4 +61,5 @@ Route::group(['middleware' => 'auth'], function () {
 	// Bill
 	Route::get('bill', [BillController::class, 'index'])->name('bill');
 	Route::get('bill/list', [BillController::class, 'list'])->name('bill.list');
+	Route::get('bill/show/{id}', [BillController::class, 'show'])->name('bill.show');
 });

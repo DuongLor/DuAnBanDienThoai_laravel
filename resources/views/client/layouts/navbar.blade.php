@@ -13,6 +13,8 @@
                       <li class="nav-item"><a class="nav-link active" aria-current="page"
                               href="{{ route('profile') }}">Trang cá nhân</a></li>
                       <li class="nav-item"><a class="nav-link active" aria-current="page"
+                              href="{{ route('bill.list') }}">Thông tin đơn hàng</a></li>
+                      <li class="nav-item"><a class="nav-link active" aria-current="page"
                               href="{{ route('logout') }}">Đăng xuất</a></li>
                   @else
                       <li class="nav-item"><a class="nav-link active" aria-current="page"
