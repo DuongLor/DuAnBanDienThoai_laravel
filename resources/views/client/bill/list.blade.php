@@ -28,7 +28,20 @@
                                         <td>{{ $order->paymentMethod->type }}</td>
                                         <td>{{ $order->order_date }}</td>
                                         <td>{{ $order->total_amount }}</td>
-                                        <td>{{ $order->status }}</td>
+                                        <td class="" style="">
+                                            @if ($order->status == 'pending')
+                                                <p class="text-warning">Đang chờ</p>
+																						@endif
+																						@if ($order->status == 'processing')
+																							<p class="text-success">Đang xử lý</p>
+																						@endif
+																						@if ($order->status == 'completed')
+																							<p class="text-success">Đã hoàn thành</p>
+																						@endif
+																						@if ($order->status == 'cancelled')
+																							<p class="text-danger">Đã hủy</p>
+																						@endif
+                                        </td>
                                         <td>
                                             <a href="{{ route('bill.show', $order->id) }}">Xem</a>
                                         </td>

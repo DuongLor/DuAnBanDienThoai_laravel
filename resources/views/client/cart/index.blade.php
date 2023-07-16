@@ -52,7 +52,7 @@
                     </div>
                     <div class="card">
                         <div class="card-body">
-                            <a href="{{ route('oder.index') }}" class="btn btn-success btn-block btn-lg">Mua sản phẩm</a>
+                            <a href="@if (count($product_cart) > 0){{ route('oder.index') }}@else{{ route('home') }}@endif" class="btn btn-success btn-block btn-lg">Mua sản phẩm</a>
                         </div>
                     </div>
                 </div>
