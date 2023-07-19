@@ -197,7 +197,8 @@
                 if (this.checked) {
                     var price = this.previousElementSibling.value;
                     var discount = this.parentElement.querySelector('input[name="discount"]').value;
-                    var quantity = this.parentElement.querySelector('input[name="quantitys"]').value;
+                    var quantity = this.parentElement.querySelector('input[name="quantity"]').value;
+										console.log(price);
                     // set max for input tag inputQuantity
                     inputQuantity.setAttribute('max', quantity);
                     if (discount) {
@@ -236,5 +237,4 @@
             });
         }
     </script>
-
 @endsection

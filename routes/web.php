@@ -8,6 +8,7 @@ use App\Http\Controllers\OderController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
@@ -62,4 +63,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('bill', [BillController::class, 'index'])->name('bill');
 	Route::get('bill/list', [BillController::class, 'list'])->name('bill.list');
 	Route::get('bill/show/{id}', [BillController::class, 'show'])->name('bill.show');
+});
+
+//admin
+Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'auth']], function () {
+	Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
