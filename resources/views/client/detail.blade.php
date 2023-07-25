@@ -187,7 +187,7 @@
 @section('js_footer_custom')
     <script>
         // Lấy các radio button
-        var colorRadios = document.querySelectorAll('input[name="color"]');
+        var colorRadios = document.querySelectorAll('input[name="color_id"]');
         var inputQuantity = document.getElementById('inputQuantity');
         // Lặp qua từng radio button
         colorRadios.forEach(function(radio) {
@@ -236,5 +236,4 @@
             });
         }
     </script>
-
 @endsection

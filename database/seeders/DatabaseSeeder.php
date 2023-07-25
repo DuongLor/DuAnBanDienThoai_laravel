@@ -25,9 +25,8 @@ class DatabaseSeeder extends Seeder
 		// \App\Models\User::factory(10)->create();
 		$this->call([
 			// chaỵ đầu
-			CategorySeeder::class,
 			BrandSeeder::class,
-			
+
 			UserSeeder::class,
 			ProductSeeder::class,
 			PaymentMethodSeeder::class,

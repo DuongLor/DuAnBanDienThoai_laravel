@@ -30,20 +30,21 @@
                                         <td>{{ $order->total_amount }}</td>
                                         <td class="" style="">
                                             @if ($order->status == 'pending')
-                                                <p class="text-warning">Đang chờ</p>
-																						@endif
-																						@if ($order->status == 'processing')
-																							<p class="text-success">Đang xử lý</p>
-																						@endif
-																						@if ($order->status == 'completed')
-																							<p class="text-success">Đã hoàn thành</p>
-																						@endif
-																						@if ($order->status == 'cancelled')
-																							<p class="text-danger">Đã hủy</p>
-																						@endif
+                                                <span class="badge bg-warning">Đang chờ</span>
+                                            @endif
+                                            @if ($order->status == 'processing')
+                                                <span class="badge bg-info">Đang xử lý</span>
+                                            @endif
+                                            @if ($order->status == 'completed')
+                                                <span class="badge bg-success">Đã hoàn thành</span>
+                                            @endif
+                                            @if ($order->status == 'cancelled')
+                                                <span class="badge bg-danger">Đã hủy</span>
+                                            @endif
                                         </td>
                                         <td>
-                                            <a href="{{ route('bill.show', $order->id) }}">Xem</a>
+                                            <a href="{{ route('bill.show', $order->id) }}"><i class="fa-solid fa-eye "
+                                                    style="color: #1764e8; font-size: 20px;margin-left: 10px"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -19,8 +19,6 @@ class SlideFactory extends Factory
         return [
 						'title' => fake()->colorName(),
 						'image' => fake()->imageUrl(),
-						'start_date' => fake()->dateTimeBetween('-1 months', 'now'),
-						'end_date' => fake()->dateTimeBetween('-1 months', 'now'),
             //
         ];
     }

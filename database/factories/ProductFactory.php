@@ -17,7 +17,6 @@ class ProductFactory extends Factory
 	public function definition()
 	{
 		return [
-			'category_id' => $this->faker->numberBetween(1, 5),
 			'brand_id' => $this->faker->numberBetween(1, 5),
 			'name' => $this->faker->name,
 			'thumbnail' => $this->faker->imageUrl(640, 480),
