@@ -187,7 +187,7 @@
 @section('js_footer_custom')
     <script>
         // Lấy các radio button
-        var colorRadios = document.querySelectorAll('input[name="color"]');
+        var colorRadios = document.querySelectorAll('input[name="color_id"]');
         var inputQuantity = document.getElementById('inputQuantity');
         // Lặp qua từng radio button
         colorRadios.forEach(function(radio) {
@@ -197,8 +197,7 @@
                 if (this.checked) {
                     var price = this.previousElementSibling.value;
                     var discount = this.parentElement.querySelector('input[name="discount"]').value;
-                    var quantity = this.parentElement.querySelector('input[name="quantity"]').value;
-										console.log(price);
+                    var quantity = this.parentElement.querySelector('input[name="quantitys"]').value;
                     // set max for input tag inputQuantity
                     inputQuantity.setAttribute('max', quantity);
                     if (discount) {

@@ -22,7 +22,6 @@ class SlideSeeder extends Seeder
                 foreach ($slides as $slide) {
                     // Lấy ngẫu nhiên 3 sản phẩm
                     $products = Product::inRandomOrder()->limit(3)->get();
-        
                     // Gán các sản phẩm cho slide
                     $slide->products()->attach($products);
                 }
