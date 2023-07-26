@@ -8,24 +8,37 @@
             <div class="card-body">
                 <div class="form-group pb-2 align-items-center">
                     <label class="mr-2 mb-2"><i class="fas fa-pen"></i> Tên Sản phẩm</label>
-                    <input type="text" class="form-control" placeholder="Nhập tên" name="name" value="{{ $Product->name }}">
+                    <input type="text" class="form-control" placeholder="Nhập tên" name="name"
+                        value="{{ $Product->name }}">
                 </div>
             </div>
             <div class="card-body">
                 <div class="form-group pb-2 align-items-center">
                     <label class="mr-2 mb-2"><i class="fas fa-pen"></i> Hãng</label>
                     <select name="brand_id" id="" class="form-control">
-											{{-- trả về default value band_id thẻ select --}}
-												@foreach ($Brands as $brand)
-													<option @if($brand->id == $Product->brand_id) selected @endif value="{{ $brand->id }}" >{{ $brand->name }}</option>
-												@endforeach
+                        {{-- trả về default value band_id thẻ select --}}
+                        @foreach ($Brands as $brand)
+                            <option @if ($brand->id == $Product->brand_id) selected @endif value="{{ $brand->id }}">
+                                {{ $brand->name }}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
             <div class="card-body">
                 <div class="form-group pb-2 align-items-center">
                     <label class="mr-2 mb-2"><i class="fas fa-pen"></i> Nội dung</label>
-                    <input type="text" class="form-control" placeholder="Nhập nội dung" name="description" value="{{ $Product->description }}">
+                    <input type="text" class="form-control" placeholder="Nhập nội dung" name="description"
+                        value="{{ $Product->description }}">
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="form-group pb-2 align-items-center">
+                    <label class="mr-2 mb-2"><i class="fas fa-pen"></i> Trạng thái</label>
+                    <select name="is_active" id="" class="form-control">
+                        <option @if ($Product->is_active == 1) selected @endif value="1">Đã hoàn thành</option>
+                        <option @if ($Product->is_active == 0) selected @endif value="0">Đang chờ</option>
+                        <option @if ($Product->is_active == 2) selected @endif value="2">Từ chối</option>
+                    </select>
                 </div>
             </div>
         </div>
@@ -57,10 +70,8 @@
             // Hiển thị ảnh preview
             img.src = URL.createObjectURL(file);
             img.style.width = '100px';
-
             // Thêm vào div preview
             document.getElementById('preview').appendChild(img);
-
         });
     </script>
 @endsection
