@@ -30,8 +30,10 @@
                     <td class="text-center">
                         @if ($Product->is_active == 0)
                             <span class="badge bg-warning">Đang chờ</span>
-                        @else
-														<span class="badge bg-success">Đã hoàn thành</span>
+                        @elseif($Product->is_active == 1)
+                            <span class="badge bg-success">Đã hoàn thành</span>
+                        @elseif($Product->is_active == 2)
+                            <span class="badge bg-danger">Từ chối</span>
                         @endif
                     </td>
                     <td class="text-center">

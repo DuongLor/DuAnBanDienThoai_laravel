@@ -70,6 +70,7 @@ class ProductAdminController extends Controller
 		$Product->name = $request->name;
 		$Product->brand_id = $request->brand_id;
 		$Product->description = $request->description;
+		$Product->is_active = $request->is_active;
 		$Product->save();
 		return redirect()->route('adminProduct')->with('success', 'Product đã được cập nhật');
 	}
